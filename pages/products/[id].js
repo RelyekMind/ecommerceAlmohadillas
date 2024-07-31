@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { db } from '../../firebase';
+import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase'; // Ajusta la ruta según tu configuración
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Image from 'next/image';
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -32,15 +33,19 @@ const ProductDetail = () => {
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold text-center my-8">{product.title}</h1>
         <div className="flex">
-          <img src={product.mainImage} alt={product.title} className="w-1/2" />
-          <div className="ml-4">
-            <p className="text-2xl font-semibold">{product.description}</p>
-            <p className="text-xl mt-2">${product.price}</p>
-            <div className="mt-4">
+          <div className="w-1/2">
+            <Image src={product.mainImage} alt={product.title} className="object-contain" width={500} height={500} />
+            <div className="flex mt-4 space-x-2">
               {product.otherImages && product.otherImages.map((image, index) => (
-                <img key={index} src={image} alt={`${product.title} ${index}`} className="w-1/4 mx-1" />
+                <img key={index} src={image} alt={`${product.title} ${index}`} className="w-24 h-24 object-contain" />
               ))}
             </div>
+          </div>
+          <div className="w-1/2 pl-8">
+            <p className="text-xl font-semibold">{product.description}</p>
+            <p className="text-2xl text-gray-800 mt-4">${product.price}</p>
+            <p className="text-green-500 mt-2">Disponible</p>
+            <button className="bg-purple-500 text-white rounded-full px-4 py-2 mt-4">Añadir al carrito</button>
           </div>
         </div>
       </div>

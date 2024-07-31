@@ -1,18 +1,18 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDPdVPTV0d4jqLXl8KOPHNl95fvgiVIB0E",
+  apiKey: "AIzaSyDPdVPTV0d4jqLXl8KOPHNl95fvgiVIB0E",
   authDomain: "almohadillas-epson.firebaseapp.com",
   projectId: "almohadillas-epson",
   storageBucket: "almohadillas-epson.appspot.com",
-  messagingSenderId: "984513172518",
-  appId: "1:984513172518:web:ec19c33447c4a2d54082e7"
+  messagingSenderId: "98451372518",
+  appId: "1:98451372518:web:e1c9c33447c4a2d54802e7"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);

@@ -4,13 +4,19 @@ import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="border p-4 rounded shadow">
-      <h3 className="text-lg font-semibold">{product.title}</h3>
-      <p className="text-gray-700">${product.price}</p>
-      <img src={product.mainImage} alt={product.title} />
-      <Link href={`/products/${product.id}`} passHref legacyBehavior>
-        <a>View Details</a>
+    <div className="bg-white border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+      <Link href={`/products/${product.id}`}>
+        <img src={product.mainImage} alt={product.title} className="object-contain h-48 w-full rounded-lg cursor-pointer" />
       </Link>
+      <h3 className="mt-4 text-lg font-semibold cursor-pointer">
+        <Link href={`/products/${product.id}`}>
+          {product.title}
+        </Link>
+      </h3>
+      <p className="text-gray-700">{product.price}</p>
+      <p className={product.stock > 0 ? 'text-green-500' : 'text-red-500'}>
+        {product.stock > 0 ? 'Disponible' : 'No disponible'}
+      </p>
     </div>
   );
 };

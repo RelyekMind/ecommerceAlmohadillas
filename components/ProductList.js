@@ -1,7 +1,7 @@
 // components/ProductList.js
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase'; // Ajusta la ruta según tu estructura
 import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase'; // Ajusta la ruta según tu configuración
 import ProductCard from './ProductCard';
 
 const ProductList = () => {
@@ -22,7 +22,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
